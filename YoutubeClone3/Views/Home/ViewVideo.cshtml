@@ -1,0 +1,32 @@
+﻿@model YoutubeClone3.Controllers.VIDEO
+
+@{
+    YoutubeClone3.Controllers.YoutubeCloneEntities ent = new YoutubeClone3.Controllers.YoutubeCloneEntities();
+
+    int id = int.Parse(Session["VideoId"].ToString());
+    var whichvideo = ent.VIDEOs.FirstOrDefault(x => x.ID == id);
+    ent.SaveChanges();
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div class="video-frame">
+    <video style="width:100%; height:500px;" controls>
+        <source src="@Url.Content(@whichvideo.FilePath)" type="video/mp4" />
+    </video>
+</div>  
+
+<h4>@whichvideo.Name</h4>
+<p>@whichvideo.ViewCount views</p>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+<tr>
+    <td style="text-align:center; vertical-align:middle;" class="no-print">
+        @Html.ActionLink("Edit", "EditVideo", new { id = int.Parse(Session["VideoId"].ToString()) }) |
+        @Html.ActionLink("Delete", "DeleteVideo", new { id = int.Parse(Session["VideoId"].ToString()) })
+    </td>
+</tr>

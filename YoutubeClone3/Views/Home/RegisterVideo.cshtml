@@ -1,0 +1,85 @@
+﻿@model YoutubeClone3.Controllers.VIDEO
+
+@{
+    ViewBag.Title = "Register";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm("RegisterVideo","Home", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <script type="text/javascript">
+
+        function myFunction() {
+
+            var file = document.getElementById('UserPhoto').files[0];
+            var reader = new FileReader();
+            // it's onload event and you forgot (parameters)
+            reader.onload = function (e) {
+                var image = document.getElementById("logoImage");
+                // the result image data
+                image.src = e.target.result;
+            }
+            // you have to declare the file loading
+            reader.readAsDataURL(file);
+        }
+    </script>
+
+    <div class="form-horizontal">
+        <h4>User.</h4>
+        <hr />
+        <div class="form-group">
+            @Html.Label("Thumbnail:", new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                <img id="logoImage" src="@Url.Action("GetTeacherPhoto", "Home")" height="180" width="180" />
+            </div>
+        </div>
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name, string.Format("{0}:", Html.DisplayNameFor(m => m.Name)), htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Owner, string.Format("{0}:", Html.DisplayNameFor(x => x.Owner)), htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Owner, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Owner, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Video:", new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                <div class="custom-file">
+                    <input type="file" id="fileupload" name="fileupload" class="custom-file-input" />
+                    <label class="custom-file-label"></label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Thumbnail:", new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                <input type="file" name="UserPhoto" id="UserPhoto" accept=".png,.jpg,.jpeg,.gif,.tif" class="form-control" onchange='myFunction()' />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Register" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to Main Page.", "Index", "Home")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
