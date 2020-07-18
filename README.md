@@ -5,7 +5,7 @@ The project is developed with ASP.NET and Microsoft SQL Server for video managem
 ![](https://raw.githubusercontent.com/ChuaN15/YoutubeClone/master/YoutubeClone3/Capture3.PNG)
 
 # Display Video Data
-![](https://raw.githubusercontent.com/ChuaN15/YoutubeClone/master/YoutubeClone3/Capture.PNG)
+![](https://raw.githubusercontent.com/ChuaN15/YoutubeClone/master/YoutubeClone3/Capture.PNG) 
 
 # Upload Video Data
 ![](https://raw.githubusercontent.com/ChuaN15/YoutubeClone/master/YoutubeClone3/Capture2.PNG)
